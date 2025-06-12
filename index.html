@@ -2,37 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cricket Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body {
-      height: 100%;
+  <script>
+    // Tailwind config for custom colors if needed
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cricketGreen: '#1e3a34',
+          }
+        }
+      }
     }
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      flex: 1;
-    }
-  </style>
+  </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-  <!-- Header -->
-  <header class="bg-green-700 text-white p-4 shadow-md">
-    <h1 class="text-2xl font-bold text-center">🏏 Cricket Dashboard</h1>
-  </header>
+  <!-- Navbar -->
+  <nav class="bg-cricketGreen text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="text-2xl font-bold">🏏 Cricket Dashboard</div>
 
-  <!-- Main Content -->
-  <main class="p-4 max-w-6xl mx-auto space-y-6 w-full">
+        <!-- Menu Button (Mobile) -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="focus:outline-none">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menu Links -->
+        <div id="menu" class="hidden md:flex space-x-6">
+          <a href="#" class="hover:text-yellow-400">Home</a>
+          <a href="#live" class="hover:text-yellow-400">Live Score</a>
+          <a href="#schedule" class="hover:text-yellow-400">Schedule</a>
+          <a href="#players" class="hover:text-yellow-400">Players</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+      <a href="#" class="block py-2 hover:text-yellow-400">Home</a>
+      <a href="#live" class="block py-2 hover:text-yellow-400">Live Score</a>
+      <a href="#schedule" class="block py-2 hover:text-yellow-400">Schedule</a>
+      <a href="#players" class="block py-2 hover:text-yellow-400">Players</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="p-4 max-w-6xl mx-auto space-y-6">
 
     <!-- Live Score -->
-    <section class="bg-white p-4 rounded-lg shadow-md">
+    <section id="live" class="bg-white p-4 rounded-lg shadow-md">
       <h2 class="text-xl font-semibold mb-2">Live Score</h2>
       <div class="flex justify-between items-center flex-wrap gap-2">
-        <div class="flex-1">
+        <div>
           <p class="text-lg font-medium">India 🇮🇳 vs Australia 🇦🇺</p>
           <p class="text-gray-600">2nd ODI • Mumbai</p>
         </div>
@@ -44,7 +73,7 @@
     </section>
 
     <!-- Match Schedule -->
-    <section class="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
+    <section id="schedule" class="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
       <h2 class="text-xl font-semibold mb-2">Upcoming Matches</h2>
       <table class="w-full text-sm">
         <thead>
@@ -73,7 +102,7 @@
     </section>
 
     <!-- Player Stats -->
-    <section class="bg-white p-4 rounded-lg shadow-md">
+    <section id="players" class="bg-white p-4 rounded-lg shadow-md">
       <h2 class="text-xl font-semibold mb-4">Top Performers</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div class="bg-green-100 p-3 rounded-lg text-center">
@@ -94,10 +123,20 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-green-700 text-white text-center p-4">
+  <footer class="bg-cricketGreen text-white text-center p-4 mt-6">
     &copy; 2025 Cricket Dashboard. All rights reserved.
   </footer>
 
+  <!-- JavaScript for Toggle Menu -->
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
 </body>
 </html>
-
