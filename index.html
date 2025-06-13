@@ -11,19 +11,19 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
 
   <!-- Navbar -->
   <header class="bg-green-700 text-white p-4 shadow-md">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">🏏 Cricket Dashboard</h1>
       <button id="menuBtn" class="sm:hidden text-white">
-        <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 stroke-current stroke-width" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
-    <nav id="mobileMenu" class="sm:hidden hidden mt-2">
+    <nav id="mobileMenu" class="sm:hidden hidden text-white focus:outline-none mt-2">
       <ul class="space-y-2">
         <li><a href="#" data-page="home" class="nav-link block px-4 py-2 hover:bg-green-600">Home</a></li>
         <li><a href="#" data-page="live" class="nav-link block px-4 py-2 hover:bg-green-600">Live Score</a></li>
@@ -45,7 +45,7 @@
   <main id="content" class="p-4 max-w-6xl mx-auto space-y-4"></main>
 
   <!-- Footer -->
-  <footer class="bg-green-700 text-white text-center p-4 mt-6">
+  <footer class="bg-green-700 text-white text-center p-4 mt-6 mt-auto">
     &copy; 2025 Cricket Dashboard. All rights reserved.
   </footer>
 
@@ -71,7 +71,7 @@
         case "home":
           html = `
             <h2 class="text-2xl font-semibold">Welcome to the Cricket Dashboard 🏏</h2>
-            <p>This is the central hub for live scores, upcoming matches, and top player stats.</p>`;
+            <p>This is the central hub for live scores, upcoming matches, and top player stats.</p>   `;
           break;
 
         case "live":
