@@ -2,119 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cricket Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cricket Dashboard SPA</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .nav-link.active {
+      background-color: #15803d;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-  <!-- Header -->
+  <!-- Navbar -->
   <header class="bg-green-700 text-white p-4 shadow-md">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">🏏 Cricket Dashboard</h1>
-
-      <!-- Mobile Menu Button -->
-      <button id="menuBtn" class="sm:hidden text-white focus:outline-none">
-        <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
+      <button id="menuBtn" class="sm:hidden text-white">
+        <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
     <nav id="mobileMenu" class="sm:hidden hidden mt-2">
       <ul class="space-y-2">
-        <li><a href="#" class="block px-4 py-2 hover:bg-green-600">Live Score</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-green-600">Matches</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-green-600">Players</a></li>
+        <li><a href="#" data-page="home" class="nav-link block px-4 py-2 hover:bg-green-600">Home</a></li>
+        <li><a href="#" data-page="live" class="nav-link block px-4 py-2 hover:bg-green-600">Live Score</a></li>
+        <li><a href="#" data-page="matches" class="nav-link block px-4 py-2 hover:bg-green-600">Matches</a></li>
+        <li><a href="#" data-page="players" class="nav-link block px-4 py-2 hover:bg-green-600">Players</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main Container -->
-  <main class="p-4 max-w-6xl mx-auto space-y-6">
+  <!-- Desktop Menu -->
+  <nav class="hidden sm:flex justify-center bg-green-800 text-white">
+    <a href="#" data-page="home" class="nav-link px-6 py-2 hover:bg-green-600">Home</a>
+    <a href="#" data-page="live" class="nav-link px-6 py-2 hover:bg-green-600">Live Score</a>
+    <a href="#" data-page="matches" class="nav-link px-6 py-2 hover:bg-green-600">Matches</a>
+    <a href="#" data-page="players" class="nav-link px-6 py-2 hover:bg-green-600">Players</a>
+  </nav>
 
-    <!-- Live Score -->
-    <section class="bg-white p-4 rounded-lg shadow-md">
-      <h2 class="text-xl font-semibold mb-2">Live Score</h2>
-      <div class="flex justify-between items-center flex-wrap gap-2">
-        <div class="flex-1">
-          <p class="text-lg font-medium">India 🇮🇳 vs Australia 🇦🇺</p>
-          <p class="text-gray-600">2nd ODI • Mumbai</p>
-        </div>
-        <div class="text-right">
-          <p class="text-2xl font-bold text-green-600">IND 256/4 (38.2)</p>
-          <p class="text-sm text-gray-600">Target: 280</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Match Schedule -->
-    <section class="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
-      <h2 class="text-xl font-semibold mb-2">Upcoming Matches</h2>
-      <table class="w-full text-sm">
-        <thead>
-          <tr class="bg-gray-200 text-left">
-            <th class="p-2">Date</th>
-            <th class="p-2">Match</th>
-            <th class="p-2">Venue</th>
-            <th class="p-2">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b">
-            <td class="p-2">June 1</td>
-            <td class="p-2">India vs Pakistan</td>
-            <td class="p-2">Ahmedabad</td>
-            <td class="p-2">7:00 PM</td>
-          </tr>
-          <tr class="border-b">
-            <td class="p-2">June 5</td>
-            <td class="p-2">Australia vs England</td>
-            <td class="p-2">Melbourne</td>
-            <td class="p-2">1:30 PM</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Player Stats -->
-    <section class="bg-white p-4 rounded-lg shadow-md">
-      <h2 class="text-xl font-semibold mb-4">Top Performers</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Player Card -->
-        <div class="bg-green-100 p-3 rounded-lg text-center">
-          <p class="font-bold">Virat Kohli</p>
-          <p>Runs: 87</p>
-        </div>
-        <div class="bg-yellow-100 p-3 rounded-lg text-center">
-          <p class="font-bold">Bumrah</p>
-          <p>Wickets: 3</p>
-        </div>
-        <div class="bg-blue-100 p-3 rounded-lg text-center">
-          <p class="font-bold">Steve Smith</p>
-          <p>Runs: 72</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
+  <!-- Content Area -->
+  <main id="content" class="p-4 max-w-6xl mx-auto space-y-4"></main>
 
   <!-- Footer -->
   <footer class="bg-green-700 text-white text-center p-4 mt-6">
     &copy; 2025 Cricket Dashboard. All rights reserved.
   </footer>
 
-  <!-- Mobile Menu Toggle Script -->
+  <!-- JavaScript for SPA -->
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    const content = document.getElementById("content");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+    // Toggle mobile menu
+    menuBtn.onclick = () => {
+      mobileMenu.classList.toggle("hidden");
+    };
+
+    // Load content based on page
+    function loadPage(page) {
+      navLinks.forEach(link => link.classList.remove("active"));
+      document.querySelectorAll(`[data-page="${page}"]`).forEach(link => link.classList.add("active"));
+
+      let html = "";
+      switch (page) {
+        case "home":
+          html = `
+            <h2 class="text-2xl font-semibold">Welcome to the Cricket Dashboard 🏏</h2>
+            <p>This is the central hub for live scores, upcoming matches, and top player stats.</p>`;
+          break;
+
+        case "live":
+          html = `
+            <h2 class="text-xl font-semibold">Live Score</h2>
+            <div class="bg-white p-4 shadow rounded">
+              <p><strong>India vs Australia</strong> — 2nd ODI, Mumbai</p>
+              <p class="text-green-600 text-2xl font-bold">IND 256/4 (38.2)</p>
+              <p>Target: 280</p>
+            </div>`;
+          break;
+
+        case "matches":
+          html = `
+            <h2 class="text-xl font-semibold">Upcoming Matches</h2>
+            <table class="w-full bg-white shadow rounded text-sm">
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="p-2">Date</th>
+                  <th class="p-2">Match</th>
+                  <th class="p-2">Venue</th>
+                  <th class="p-2">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-2">June 1</td>
+                  <td class="p-2">India vs Pakistan</td>
+                  <td class="p-2">Ahmedabad</td>
+                  <td class="p-2">7:00 PM</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-2">June 5</td>
+                  <td class="p-2">Australia vs England</td>
+                  <td class="p-2">Melbourne</td>
+                  <td class="p-2">1:30 PM</td>
+                </tr>
+              </tbody>
+            </table>`;
+          break;
+
+        case "players":
+          html = `
+            <h2 class="text-xl font-semibold">Top Performers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="bg-green-100 p-3 rounded text-center">
+                <p class="font-bold">Virat Kohli</p>
+                <p>Runs: 87</p>
+              </div>
+              <div class="bg-yellow-100 p-3 rounded text-center">
+                <p class="font-bold">Bumrah</p>
+                <p>Wickets: 3</p>
+              </div>
+              <div class="bg-blue-100 p-3 rounded text-center">
+                <p class="font-bold">Steve Smith</p>
+                <p>Runs: 72</p>
+              </div>
+            </div>`;
+          break;
+
+        default:
+          html = "<p>Page not found.</p>";
+      }
+
+      content.innerHTML = html;
+    }
+
+    // Add event listeners to nav links
+    navLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const page = link.getAttribute("data-page");
+        loadPage(page);
+        mobileMenu.classList.add("hidden"); // hide menu after click (on mobile)
+      });
     });
-  </script>
 
+    // Load default page
+    loadPage("home");
+  </script>
 </body>
 </html>
